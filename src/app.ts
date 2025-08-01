@@ -13,7 +13,19 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // --- Global Middleware ---
-app.use(cors());
+// CORS configuration for production
+const corsOptions = {
+    origin: [
+        'https://https://registrar-front.onrender.com', // Replace with your frontend URL
+        'http://localhost:3000', // For local development
+        'http://localhost:5173', // For Vite development
+        'http://localhost:8080'  // For other dev servers
+    ],
+    credentials: true,
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
