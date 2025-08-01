@@ -51,21 +51,40 @@ const startServer = async () => {
         // Seeding dummy accounts if they don't exist
         await User.findOrCreate({
             where: { idNumber: 'S001' },
-            defaults: { idNumber: 'S001', password: 'password', role: 'student' }
+            defaults: { 
+                idNumber: 'S001', 
+                password: 'password', 
+                role: 'student',
+                firstName: 'John',
+                lastName: 'Student',
+                course: 'Computer Science'
+            }
         });
         console.log('Dummy student S001 created or already exists.');
 
         await User.findOrCreate({
             where: { idNumber: 'A001' },
-            defaults: { idNumber: 'A001', password: 'adminpass', role: 'admin' }
+            defaults: { 
+                idNumber: 'A001', 
+                password: 'adminpass', 
+                role: 'admin',
+                firstName: 'Admin',
+                lastName: 'User'
+            }
         });
         console.log('Dummy admin A001 created or exists.');
 
         await User.findOrCreate({
             where: { idNumber: 'AC001' },
-            defaults: { idNumber: 'AC001', password: 'accountingpass', role: 'accounting' }
+            defaults: { 
+                idNumber: 'AC001', 
+                password: 'accountingpass', 
+                role: 'accounting',
+                firstName: 'Accounting',
+                lastName: 'User'
+            }
         });
-        console.log('Dummy accounting AC001 createdddd or exists.');
+        console.log('Dummy accounting AC001 created or exists.');
 
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);
