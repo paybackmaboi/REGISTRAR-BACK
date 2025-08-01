@@ -25,10 +25,25 @@ export const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
     logging: false, // It's good practice to disable logging in production
     dialectOptions: {
       // Add SSL options if your database provider requires it
-      // ssl: {
-      //   require: true,
-      //   rejectUnauthorized: false
-      // }
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      },
+      // Additional MySQL options for better connection handling
+      connectTimeout: 60000,
+      acquireTimeout: 60000,
+      timeout: 60000,
+      pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+      }
+    },
+    // Retry configuration for better reliability
+    retry: {
+      max: 3,
+      timeout: 3000
     }
 });
 
