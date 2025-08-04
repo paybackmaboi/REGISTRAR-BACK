@@ -1,14 +1,14 @@
 # 📁 CAPSTONE 2: Records Management System
 
 **Documentation Lead**: Raquel Pacure  
-**Last Updated**: August 4, 2025 - 1:47 A.M
+**Last Updated**: August 4, 2025 - 7:53 P.M
 
 ---
 
 ## 📄 Project Documentation
 
 🔗 **Download the main documentation file:**  
-[📎 CAPSTONE 2 (RECORDS MANAGEMENT SYSTEM).docx](https://docs.google.com/document/d/1jS6VLb4ag8QvpgZ1xl12zeXg-P5nAB3r/edit?usp=sharing&ouid=118028217502818824437&rtpof=true&sd=true)  
+[📎 CAPSTONE 2 (RECORDS MANAGEMENT SYSTEM).docx](https://docs.google.com/document/d/1fYcvhxt9zDqDdhzg1XfsIErCNLb5qLRN/edit?usp=sharing&ouid=104714777232985337086&rtpof=true&sd=true)  
 
 
 ## 📊 Documentation Progress Tracker
@@ -18,14 +18,14 @@
 | ✔︎ Project Feasibility                 | Done                                                                          |
 | ✔︎ Work Breakdown Structure            | Done (awaiting final check by team leader)                                    |
 | ✔︎ Cost and Benefits                   | Done (prices still under review/discussion)                                   |
-| 🔄 MOSCOW                              | On progress                                                                   |
-| 🔄 Gantt Chart                         | Done                                           |
+| ✔︎ MOSCOW                              | Done (waiting for the added feature in the system)                          |
+| ✔︎ Gantt Chart                         | Done                                           |
 | 🔄 Critical Path                       | In progress                                  |
-| ⛔ Data and Process Modeling           | Not started yet                                                               |
+| ✔︎ Data and Process Modeling           | Done (awaiting final check by team leader)                                    |
 | ✔︎ Existing Flowchart                  | Done                                                                          |
 | ✔︎ Proposed Flowchart                  | Done                                                                          |
 | ⏳ Use Case Diagram                    | Not started yet                                                               |
-| ❓ Narrative                           | Done (waiting for system other features)                               |
+| ✔︎ Narrative                           | Done (waiting for system other features)                               |
 | ⛔ Activity Diagram                    | Not started yet (waiting for system completion)                               |
 | ⛔ State Chart Diagram                 | Not started yet (waiting for system completion)                                |
 | ⚠️ Design                              | Inputted (will be updated as features are completed)                          |
