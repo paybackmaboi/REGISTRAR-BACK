@@ -1,5 +1,5 @@
 CAPSTONE 2: Records Management System
-Project Manger: Raquel Pacure
+Project Manger: Candido, Ly ann kate
 Last Updated: August 8, 2025 - 11:13 A.M
 
 ✅ Completed Sections 
@@ -36,4 +36,3 @@ Complete Critical Path – Confirm task dependencies to lock in final schedule. 
 Update Design Section – Reflect progress of newly developed features. (Ongoing)
 Begin ERD Draft – Start initial version while waiting for database completion. (Aug 12, 2025)
 Prepare for Remaining Diagrams – Collect system flow data from development team. (Before Aug 15, 2025)
-
