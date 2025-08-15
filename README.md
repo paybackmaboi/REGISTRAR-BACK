@@ -1,7 +1,7 @@
 # 📁 CAPSTONE 2: Records Management System
 
 **Documentation Lead**: Raquel Pacure  
-**Last Updated**: August 15, 2025 – 09:30 A.M
+**Last Updated**: August 15, 2025 – 11:04 A.M
 
 ---
 
