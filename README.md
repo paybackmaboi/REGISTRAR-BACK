@@ -1,7 +1,7 @@
 # 📁 CAPSTONE 2: Records Management System
 
 **Documentation Lead**: Raquel Pacure  
-**Last Updated**: August 14, 2025 – 11:50 P.M
+**Last Updated**: August 15, 2025 – 09:30 A.M
 
 ---
 
@@ -33,8 +33,8 @@
 | Design                                | ⚠️ Inputted          | Will be updated as features are completed        |
 | Entity Relationship Diagram (ERD)     | ⛔ Not started yet   | Waiting for database to be completed             |
 | System Architecture                   | ⛔ Not started yet   |                                                  |
-| Security                              | ✅ Done              |                                                  |
-| Development                           | ✅ Done              |                                                  |
+| Security                              | ✅ Done              | Needs to be check                                |
+| Development                           | ✅ Done              | Revised                                          |
 | Hardware Specification                | ✅ Done              |                                                  |
 
 ---
@@ -51,7 +51,7 @@ It aims to reduce manual workloads, increase data accuracy, and enhance accessib
 - **Lourd Angelo Bufete** - Backend Developer
 - **Romy Formentera** - Frontend Developer
 - **Raquel Pacure** – Documentation Lead  
-- **Ly Ann Kate Candido** - Prokect Manager
+- **Ly Ann Kate Candido** - Project Manager
 - **Jade Steve Molejon** - Researcher / Documentation
 
 ---
