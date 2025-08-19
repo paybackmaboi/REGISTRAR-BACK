@@ -1,7 +1,7 @@
 # 📁 CAPSTONE 2: Records Management System
 
 **Documentation Lead**: Raquel Pacure  
-**Last Updated**: August 15, 2025 – 11:04 A.M
+**Last Updated**: August 19, 2025 – 07:10 P.M
 
 ---
 
@@ -22,7 +22,7 @@
 | Cost and Benefits                     | ✅ Done              | Prices still under review/discussion             |
 | MOSCOW                                | ✅ Done              |                                                  |
 | Gantt Chart                           | ✅ Done              |                                                  |
-| Critical Path                         | ⛔ Not started yet   | Waiting for Project Manager to send me the Critical Path|
+| Critical Path                         | ✅ Done   | Waiting for Project Manager to send me the Critical Path    |
 | Data and Process Modeling             | ✅ Done              | Awaiting final check by team leader              |
 | Existing Flowchart                    | ✅ Done              | Not the Updated Version                          |
 | Proposed Flowchart                    | ✅ Done              | Not the Updated Version                          |
@@ -41,7 +41,7 @@
 
 ## 📌 Project Overview
 
-The **Records Management System** is designed to streamline and automate the management of academic records.  
+    The **Online Records Management System** is designed to streamline and automate the management of academic records.  
 It aims to reduce manual workloads, increase data accuracy, and enhance accessibility for registrar operations.
 
 ---
@@ -60,8 +60,7 @@ It aims to reduce manual workloads, increase data accuracy, and enhance accessib
 
 - Diagrams and designs will be updated as development progresses.  
 - Some sections are pending completion until the system and database are finalized.  
-- The **Entity Relationship Diagram (ERD)** is not yet started, pending finalization of the database.  
-- The **Critical Path** is not yet inputted, awaiting completion from the Project Manager.  
+- The **Entity Relationship Diagram (ERD)** is not yet started, pending finalization of the database.    
 - **Scope and Limitation** is not yet started, waiting for system completion.  
 - The **Design** section will be updated as soon as the system’s final version is completed and new features are added.  
 - **Work Breakdown Structure** is done but pending final review from the Team Leader.  
