@@ -1,7 +1,7 @@
 # 📁 CAPSTONE 2: Records Management System
 
 **Documentation Lead**: Raquel Pacure  
-**Last Updated**: August 19, 2025 – 07:10 P.M
+**Last Updated**: August 20, 2025 – 01:02 A.M
 
 ---
 
@@ -16,13 +16,13 @@
 
 | **Section**                           | **Status**          | **Notes**                                        |
 |---------------------------------------|---------------------|--------------------------------------------------|
-| Scope and Limitation                  | ⛔ Not started yet   | Waiting for system completion                    |
+| Scope and Limitation                  | ✅ Done              |                                                  |
 | Project Feasibility                   | ✅ Done              |                                                  |
 | Work Breakdown Structure              | ✅ Done              | Awaiting final check by team leader              |
 | Cost and Benefits                     | ✅ Done              | Prices still under review/discussion             |
 | MOSCOW                                | ✅ Done              |                                                  |
 | Gantt Chart                           | ✅ Done              |                                                  |
-| Critical Path                         | ✅ Done   | Waiting for Project Manager to send me the Critical Path    |
+| Critical Path                         | ✅ Done              |                                                  |
 | Data and Process Modeling             | ✅ Done              | Awaiting final check by team leader              |
 | Existing Flowchart                    | ✅ Done              | Not the Updated Version                          |
 | Proposed Flowchart                    | ✅ Done              | Not the Updated Version                          |
@@ -47,7 +47,7 @@ It aims to reduce manual workloads, increase data accuracy, and enhance accessib
 ---
 
 ## 👥 Team Members
-- **Roy P. Estorco** - Leader
+- **Roy P. Estorco** - Team Leader
 - **Lourd Angelo Bufete** - Backend Developer
 - **Romy Formentera** - Frontend Developer
 - **Raquel Pacure** – Documentation Lead  
@@ -61,10 +61,9 @@ It aims to reduce manual workloads, increase data accuracy, and enhance accessib
 - Diagrams and designs will be updated as development progresses.  
 - Some sections are pending completion until the system and database are finalized.  
 - The **Entity Relationship Diagram (ERD)** is not yet started, pending finalization of the database.    
-- **Scope and Limitation** is not yet started, waiting for system completion.  
-- The **Design** section will be updated as soon as the system’s final version is completed and new features are added.  
-- **Work Breakdown Structure** is done but pending final review from the Team Leader.  
+- The **Design** section will be updated as soon as the system’s final version is completed and new features are added.   
 - **Cost and Benefits** is done, but pricing is still under review/discussion.  
 - **Activity Diagram** and **State Chart Diagram** are not yet started, waiting for system completion.  
 - The **Existing Flowchart & Proposed Flowchart** in the Document are not the Updated Version or the New Existing Flowchart & Proposed Flowchart
+- **Use Case Diagram** is done but pending final review from the Team Leader. 
 
