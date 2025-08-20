@@ -17,6 +17,8 @@ import enrollmentRoutes from './routes/enrollmentRoutes';
 import subjectRoutes from './routes/subjectRoutes';
 import scheduleRoutes from './routes/scheduleRoutes';
 import courseRoutes from './routes/courseRoutes';
+import schoolYearRoutes from './routes/schoolYearRoutes'; 
+import semesterRoutes from './routes/semesterRoutes';
 
 
 dotenv.config();
@@ -39,11 +41,12 @@ app.use('/api/requests', requestRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/accounts', accountRoutes);
 app.use('/api/notifications', notificationRoutes);
-// Add the new registration route
 app.use('/api/register', registrationRoutes);
 // Add new routes for enrollment and subject management
 app.use('/api/enrollments', enrollmentRoutes);
+app.use('/api/school-years', schoolYearRoutes);
 app.use('/api/subjects', subjectRoutes);
+app.use('/api/semesters', semesterRoutes);
 app.use('/api/schedules', scheduleRoutes);
 app.use('/api/courses', courseRoutes);
 

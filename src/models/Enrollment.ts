@@ -1,14 +1,17 @@
 import { Model, DataTypes, Sequelize, Optional } from 'sequelize';
 
+// ✨ FIX: Made 'status' and 'enrollmentDate' optional with '?'
+// This aligns with the database having default values for them.
 interface EnrollmentAttributes {
     id: number;
     studentId: number;
     scheduleId: number;
-    status: 'enrolled' | 'assessed' | 'dropped';
-    enrollmentDate: Date;
+    status?: 'enrolled' | 'assessed' | 'dropped';
+    enrollmentDate?: Date;
 }
 
-interface EnrollmentCreationAttributes extends Optional<EnrollmentAttributes, 'id'> {}
+// ✨ FIX: Added 'status' and 'enrollmentDate' to the optional fields for creation.
+interface EnrollmentCreationAttributes extends Optional<EnrollmentAttributes, 'id' | 'status' | 'enrollmentDate'> {}
 
 export class Enrollment extends Model<EnrollmentAttributes, EnrollmentCreationAttributes> implements EnrollmentAttributes {
     public id!: number;
@@ -38,13 +41,13 @@ export const initEnrollment = (sequelize: Sequelize) => {
         },
         status: {
             type: DataTypes.ENUM('enrolled', 'assessed', 'dropped'),
-            defaultValue: 'enrolled',
+            defaultValue: 'enrolled', // This default is used if not provided
             allowNull: false,
         },
         enrollmentDate: {
             type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: DataTypes.NOW,
+            defaultValue: DataTypes.NOW, // This default is used if not provided
         },
     }, {
         tableName: 'enrollments',

@@ -1,16 +1,15 @@
 import { Model, DataTypes, Sequelize, Optional } from 'sequelize';
 
+// ✨ FIX: Removed subjectType from the interface
 interface SubjectAttributes {
     id: number;
     code: string;
-    name: string;
     description?: string;
     units: number;
     courseId: number;
     yearLevel: number;
     semester: number;
-    subjectType: 'Core' | 'Elective' | 'General Education' | 'NSTP' | 'PE';
-    isActive: boolean;
+    isActive?: boolean;
 }
 
 interface SubjectCreationAttributes extends Optional<SubjectAttributes, 'id'> {}
@@ -18,14 +17,12 @@ interface SubjectCreationAttributes extends Optional<SubjectAttributes, 'id'> {}
 export class Subject extends Model<SubjectAttributes, SubjectCreationAttributes> implements SubjectAttributes {
     public id!: number;
     public code!: string;
-    public name!: string;
     public description!: string;
     public units!: number;
     public courseId!: number;
     public yearLevel!: number;
     public semester!: number;
-    public subjectType!: 'Core' | 'Elective' | 'General Education' | 'NSTP' | 'PE';
-    public isActive!: boolean;
+    public isActive!: boolean; // subjectType was removed here
 
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
@@ -43,13 +40,9 @@ export const initSubject = (sequelize: Sequelize) => {
             allowNull: false,
             unique: true,
         },
-        name: {
-            type: DataTypes.STRING(100),
-            allowNull: false,
-        },
         description: {
-            type: DataTypes.TEXT,
-            allowNull: true,
+            type: DataTypes.STRING(100),
+            allowNull: false
         },
         units: {
             type: DataTypes.INTEGER,
@@ -67,11 +60,7 @@ export const initSubject = (sequelize: Sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        subjectType: {
-            type: DataTypes.ENUM('Core', 'Elective', 'General Education', 'NSTP', 'PE'),
-            allowNull: false,
-            defaultValue: 'Core',
-        },
+        // ✨ FIX: The subjectType field definition has been completely removed
         isActive: {
             type: DataTypes.BOOLEAN,
             allowNull: false,

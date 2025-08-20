@@ -7,7 +7,8 @@ import {
     updateStudent,
     deleteStudent,
     registerStudent,
-    debugStudentRegistration
+    debugStudentRegistration,
+    getStudentEnrollments,
 } from '../controllers/studentController';
 import { authMiddleware, adminMiddleware } from '../middleware/authMiddleware';
 
@@ -20,7 +21,8 @@ router.post('/register', registerStudent);
 router.get('/debug', authMiddleware, debugStudentRegistration);
 
 // Admin routes for student management
-router.get('/', authMiddleware, adminMiddleware, getAllStudents);
+router.get('/', authMiddleware, adminMiddleware, getAllStudents)
+router.get('/:studentId/enrollments', authMiddleware, adminMiddleware, getStudentEnrollments);
 router.get('/:id', authMiddleware, adminMiddleware, getStudentDetails);
 router.put('/:id', authMiddleware, adminMiddleware, updateStudent);
 router.delete('/:id', authMiddleware, adminMiddleware, deleteStudent);

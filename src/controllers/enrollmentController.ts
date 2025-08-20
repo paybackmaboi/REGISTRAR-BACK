@@ -1,5 +1,5 @@
 import { Request as ExpressRequest, Response, NextFunction } from 'express';
-import { Enrollment as EnrollmentModel, User, Schedule, Subject } from '../database';
+import { Enrollment as EnrollmentModel, User, Schedule, Subject, SchoolYear, Semester } from '../database';
 
 export const createEnrollment = async (req: ExpressRequest, res: Response, next: NextFunction): Promise<void> => {
     try {
@@ -63,29 +63,29 @@ export const getEnrollments = async (req: ExpressRequest, res: Response, next: N
 
 export const getStudentEnrollments = async (req: ExpressRequest, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const userId = req.user?.id;
-        if (!userId) {
-            res.status(401).json({ message: 'Unauthorized' });
-            return;
-        }
+        const { studentId } = req.params;
 
         const enrollments = await EnrollmentModel.findAll({
-            where: { studentId: userId },
-            include: [
-                {
-                    model: Schedule,
-                    as: 'schedule',
-                    include: [{
-                        model: Subject,
-                        as: 'subject'
-                    }]
-                }
-            ],
-            order: [['createdAt', 'DESC']]
+            where: { studentId: parseInt(studentId, 10) },
+            include: [{
+                model: Schedule,
+                as: 'schedule',
+                include: [
+                    { model: Subject, as: 'subject' },
+                    { model: SchoolYear, as: 'schoolYear' },
+                    { model: Semester, as: 'semester' }
+                ]
+            }],
+            order: [
+                // Order by most recent school year and semester first
+                [{ model: Schedule, as: 'schedule' }, { model: SchoolYear, as: 'schoolYear' }, 'year', 'DESC'],
+                [{ model: Schedule, as: 'schedule' }, { model: Semester, as: 'semester' }, 'id', 'ASC'],
+            ]
         });
 
         res.json(enrollments);
     } catch (error) {
+        console.error("Error fetching student enrollments:", error);
         next(error);
     }
 };

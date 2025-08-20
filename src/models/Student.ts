@@ -2,6 +2,8 @@ import { Model, DataTypes, Sequelize, Optional } from 'sequelize';
 
 interface StudentAttributes {
     id: number;
+    registrationSchoolYearId?: number; 
+    registrationSemesterId?: number; 
     userId: number;
     courseId: number | null; // Allow null for tertiary level students
     studentNumber: string;
@@ -52,11 +54,9 @@ interface StudentAttributes {
     
     // III. CURRENT ACADEMIC BACKGROUND
     major?: string;
-    studentType: 'First' | 'Second' | 'Summer';
-    semesterEntry: 'First' | 'Second' | 'Summer';
+    studentType: 'New' | 'Transferee' | 'Returnee' | 'Old';
     yearOfEntry: number;
     estimatedYearOfGraduation?: number | null;
-    applicationType: 'Freshmen' | 'Transferee' | 'Cross Enrollee';
     
     // IV. ACADEMIC HISTORY
     // Elementary
@@ -149,11 +149,9 @@ export class Student extends Model<StudentAttributes, StudentCreationAttributes>
     
     // III. CURRENT ACADEMIC BACKGROUND
     public major!: string;
-    public studentType!: 'First' | 'Second' | 'Summer';
-    public semesterEntry!: 'First' | 'Second' | 'Summer';
+    public studentType!: 'New' | 'Transferee' | 'Returnee' | 'Old';
     public yearOfEntry!: number;
     public estimatedYearOfGraduation!: number | null;
-    public applicationType!: 'Freshmen' | 'Transferee' | 'Cross Enrollee';
     
     // IV. ACADEMIC HISTORY
     // Elementary
@@ -201,6 +199,22 @@ export const initStudent = (sequelize: Sequelize) => {
             type: DataTypes.INTEGER.UNSIGNED,
             autoIncrement: true,
             primaryKey: true,
+        },
+        registrationSchoolYearId: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: true, // Allow null if not applicable
+            references: {
+                model: 'school_years', // This should be the table name for SchoolYear
+                key: 'id',
+            }
+        },
+        registrationSemesterId: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: true,
+            references: {
+                model: 'semesters', // Table name for Semester model
+                key: 'id',
+            }
         },
         userId: {
             type: DataTypes.INTEGER.UNSIGNED,
@@ -368,14 +382,9 @@ export const initStudent = (sequelize: Sequelize) => {
             allowNull: true,
         },
         studentType: {
-            type: DataTypes.ENUM('First', 'Second', 'Summer'),
+            type: DataTypes.ENUM('New', 'Transferee', 'Returnee', 'Old'),
             allowNull: false,
-            defaultValue: 'First',
-        },
-        semesterEntry: {
-            type: DataTypes.ENUM('First', 'Second', 'Summer'),
-            allowNull: false,
-            defaultValue: 'First',
+            defaultValue: 'New',
         },
         yearOfEntry: {
             type: DataTypes.INTEGER,
@@ -384,11 +393,6 @@ export const initStudent = (sequelize: Sequelize) => {
         estimatedYearOfGraduation: {
             type: DataTypes.INTEGER,
             allowNull: true,
-        },
-        applicationType: {
-            type: DataTypes.ENUM('Freshmen', 'Transferee', 'Cross Enrollee'),
-            allowNull: false,
-            defaultValue: 'Freshmen',
         },
         
         // IV. ACADEMIC HISTORY

@@ -110,12 +110,19 @@ export const connectAndInitialize = async () => {
         UserModel.hasMany(NotificationModel, { foreignKey: 'userId', as: 'notifications' });
         NotificationModel.belongsTo(UserModel, { foreignKey: 'userId', as: 'user' });
 
+        // SchoolYear -> Student (One-to-Many for registration)
+		SchoolYearModel.hasMany(StudentModel, { foreignKey: 'registrationSchoolYearId', as: 'registeredStudents' });
+		StudentModel.belongsTo(SchoolYearModel, { foreignKey: 'registrationSchoolYearId', as: 'registrationSchoolYear' });
+		
+		// Semester -> Student (One-to-Many for registration)
+		SemesterModel.hasMany(StudentModel, { foreignKey: 'registrationSemesterId', as: 'registeredStudents' });
+		StudentModel.belongsTo(SemesterModel, { foreignKey: 'registrationSemesterId', as: 'registrationSemester' });
         // Authenticate the connection.
         await sequelize.authenticate();
         console.log('Sequelize has connected to the database successfully.');
         
-        // Sync database
-        await sequelize.sync({ force: false, alter: false });
+        // ✨ FIX: Sync database without forcing table recreation
+        await sequelize.sync({ alter: true });
         console.log('All models were synchronized successfully.');
 
         // Seed initial data

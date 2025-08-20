@@ -1,19 +1,22 @@
 import { Model, DataTypes, Sequelize, Optional } from 'sequelize';
 
+// ✨ FIX: Updated the interface to explicitly use `| null` for nullable fields
+// and `?` for fields with database defaults.
 interface ScheduleAttributes {
     id: number;
     subjectId: number;
     schoolYearId: number;
     semesterId: number;
-    dayOfWeek: string;
-    startTime: string;
-    endTime: string;
-    room?: string;
-    maxStudents?: number;
-    currentEnrolled: number;
-    isActive: boolean;
+    dayOfWeek: string | null;
+    startTime: string | null;
+    endTime: string | null;
+    room: string | null;
+    maxStudents: number | null;
+    currentEnrolled?: number; // Optional because it has a default value
+    isActive?: boolean;      // Optional because it has a default value
 }
 
+// When creating a new schedule, `id` is optional.
 interface ScheduleCreationAttributes extends Optional<ScheduleAttributes, 'id'> {}
 
 export class Schedule extends Model<ScheduleAttributes, ScheduleCreationAttributes> implements ScheduleAttributes {
@@ -21,11 +24,14 @@ export class Schedule extends Model<ScheduleAttributes, ScheduleCreationAttribut
     public subjectId!: number;
     public schoolYearId!: number;
     public semesterId!: number;
-    public dayOfWeek!: string;
-    public startTime!: string;
-    public endTime!: string;
-    public room!: string;
-    public maxStudents!: number;
+    
+    // These types are correct as they match what the database can return (a string or null)
+    public dayOfWeek!: string | null;
+    public startTime!: string | null;
+    public endTime!: string | null;
+    public room!: string | null;
+    public maxStudents!: number | null;
+    
     public currentEnrolled!: number;
     public isActive!: boolean;
 
@@ -54,15 +60,15 @@ export const initSchedule = (sequelize: Sequelize) => {
         },
         dayOfWeek: {
             type: DataTypes.STRING(20),
-            allowNull: false,
+            allowNull: true,
         },
         startTime: {
-            type: DataTypes.STRING(10),
-            allowNull: false,
+            type: DataTypes.TIME,
+            allowNull: true,
         },
         endTime: {
-            type: DataTypes.STRING(10),
-            allowNull: false,
+            type: DataTypes.TIME,
+            allowNull: true,
         },
         room: {
             type: DataTypes.STRING(50),

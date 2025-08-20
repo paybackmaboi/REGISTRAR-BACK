@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { User, Student, Course, sequelize  } from '../database';
+import { User, Student, Course, sequelize, Subject, Schedule, Enrollment, SchoolYear, Semester } from '../database';
 
 interface ExpressRequest extends Request {
     user?: {
@@ -85,50 +85,45 @@ export const getRegistrationStatus = async (req: ExpressRequest, res: Response, 
 
 export const getAllStudents = async (req: ExpressRequest, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const students = await User.findAll({
+        const { schoolYearId, semesterId } = req.query;
+        const queryOptions: any = {
             where: { role: 'student', isActive: true },
             include: [
                 {
                     model: Student,
                     as: 'studentDetails',
-                    include: [
-                        {
-                            model: Course,
-                            as: 'course'
-                        }
-                    ]
+                    required: true, 
+                    include: [{ model: Course, as: 'course' }]
                 }
             ],
-            order: [['createdAt', 'DESC']]
-        });
+            order: [['lastName', 'ASC']],
+            distinct: true
+        };
+
+        if (schoolYearId && semesterId) {
+            queryOptions.include[0].where = {
+                registrationSchoolYearId: parseInt(schoolYearId as string, 10),
+                // Add the semester filter
+                registrationSemesterId: parseInt(semesterId as string, 10)
+            };
+        }
+        
+        const students = await User.findAll(queryOptions);
 
         const formattedStudents = students.map(student => {
             const studentDetails = student.get('studentDetails') as any;
-            const isRegistered = !!studentDetails;
-
-            // 1. Create a 'name' field in the desired "Last, First M." format.
-            const name = `${student.lastName}, ${student.firstName} ${student.middleName || ''}`.trim();
-
-            // 2. Format the 'createdAt' date into a 'YYYY-MM-DD' string to prevent "Invalid Date".
-            const formattedDate = new Date(student.createdAt).toISOString().split('T')[0];
             return {
                 id: student.id,
                 idNumber: student.idNumber,
-                firstName: student.firstName,
-                lastName: student.lastName,
-                middleName: student.middleName,
+                name: `${student.lastName}, ${student.firstName} ${student.middleName || ''}`.trim(),
                 gender: studentDetails?.gender || 'N/A',
-                email: student.email,
-                phoneNumber: student.phoneNumber,
-                isRegistered: !!studentDetails,
-                course: studentDetails?.course?.name || 'Not registered',
-                studentNumber: studentDetails?.studentNumber || null,
-                fullName: studentDetails?.fullName || `${student.firstName} ${student.lastName}`,
-                academicStatus: studentDetails?.academicStatus || 'Not registered',
-                createdAt: formattedDate,
+                course: studentDetails?.course?.name || 'Not Enrolled',
+                status: 'Registered',
+                createdAt: new Date(student.createdAt).toISOString().split('T')[0],
+                academicStatus: studentDetails?.academicStatus || 'N/A',
+                school_year_id: studentDetails?.registrationSchoolYearId || null
             };
         });
-
         res.json(formattedStudents);
     } catch (error) {
         console.error('Error fetching all students:', error);
@@ -190,7 +185,7 @@ export const updateStudentDetails = async (req: ExpressRequest, res: Response, n
             await studentDetails.update(updateData);
         }
 
-        res.json({ message: 'Student details updated successfully.' });
+        res.json({ message: 'Student details updated successfullyssss.' });
     } catch (error) {
         console.error('Error updating student details:', error);
         next(error);
@@ -362,13 +357,14 @@ export const registerStudent = async (req: ExpressRequest, res: Response, next: 
             guardianIncome,
             
             // III. CURRENT ACADEMIC BACKGROUND
+            registrationSchoolYearId,
+            registrationSemesterId, 
             courseId,
             major,
             studentType,
-            semesterEntry,
             yearOfEntry,
             estimatedYearOfGraduation,
-            applicationType,
+            yearLevel,
             
             // IV. ACADEMIC HISTORY
             // Elementary
@@ -415,10 +411,7 @@ export const registerStudent = async (req: ExpressRequest, res: Response, next: 
             'cityAddress', 'provincialAddress', 'fatherName', 'fatherAddress',
             'fatherOccupation', 'fatherContactNumber', 'motherName', 'motherAddress',
             'motherOccupation', 'motherContactNumber', 'guardianName', 'guardianAddress',
-            'guardianOccupation', 'guardianContactNumber', 'studentType',
-            'semesterEntry', 'yearOfEntry', 'applicationType'
-            // Removed courseId, elementary, junior high, and senior high requirements
-            // since this is tertiary level only and course can be selected later
+            'guardianOccupation', 'guardianContactNumber', 'studentType', 'yearOfEntry'                                                                                                                     
         ];
 
         for (const field of requiredFields) {
@@ -441,10 +434,12 @@ export const registerStudent = async (req: ExpressRequest, res: Response, next: 
         }, { transaction: t });
 
         // Create student record with ALL fields from SPR form
-        await Student.create({
+       const newStudent = await Student.create({
             userId: newUser.id,
             studentNumber: newUser.idNumber,
             courseId: courseId ? parseInt(courseId) : null, // Make courseId optional
+            registrationSchoolYearId: registrationSchoolYearId ? parseInt(registrationSchoolYearId) : undefined,
+            registrationSemesterId: registrationSemesterId ? parseInt(registrationSemesterId) : undefined,
             
             // I. PERSONAL DATA
             fullName: fullName || `${lastName}, ${firstName} ${middleName || ''}`,
@@ -491,10 +486,8 @@ export const registerStudent = async (req: ExpressRequest, res: Response, next: 
             // III. CURRENT ACADEMIC BACKGROUND
             major,
             studentType,
-            semesterEntry,
             yearOfEntry: parseInt(yearOfEntry),
             estimatedYearOfGraduation: estimatedYearOfGraduation ? parseInt(estimatedYearOfGraduation) : null,
-            applicationType,
             
             // IV. ACADEMIC HISTORY
             // Elementary
@@ -532,6 +525,37 @@ export const registerStudent = async (req: ExpressRequest, res: Response, next: 
             cumulativeGPA: 0.00,
             isActive: true
         }, { transaction: t });
+        
+        if (courseId && yearLevel && registrationSchoolYearId && registrationSemesterId) {
+            // 1. Find all subjects for the selected course, year, and semester
+            const subjectsToEnroll = await Subject.findAll({
+                where: {
+                    courseId: parseInt(courseId, 10),
+                    yearLevel: parseInt(yearLevel, 10),
+                    semester: parseInt(registrationSemesterId, 10),
+                },
+                transaction: t
+            });
+
+            // 2. For each subject, create a Schedule and an Enrollment record
+            for (const subject of subjectsToEnroll) {
+                const [schedule] = await Schedule.findOrCreate({
+                    where: {
+                        subjectId: subject.id,
+                        schoolYearId: parseInt(registrationSchoolYearId, 10),
+                        semesterId: parseInt(registrationSemesterId, 10),
+                    },
+                    transaction: t
+                });
+
+                // Create the enrollment record linking the student to the schedule
+                await Enrollment.create({
+                    studentId: newStudent.id,
+                    scheduleId: schedule.id,
+                    status: 'enrolled'
+                }, { transaction: t });
+            }
+        }
 
         await t.commit();
 
@@ -582,6 +606,34 @@ export const debugStudentRegistration = async (req: ExpressRequest, res: Respons
         });
     } catch (error) {
         console.error('Error in debug endpoint:', error);
+        next(error);
+    }
+};
+
+export const getStudentEnrollments = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+        const { studentId } = req.params;
+
+        const enrollments = await Enrollment.findAll({
+            where: { studentId: parseInt(studentId, 10) },
+            include: [{
+                model: Schedule,
+                as: 'schedule',
+                include: [
+                    { model: Subject, as: 'subject' },
+                    { model: SchoolYear, as: 'schoolYear' },
+                    { model: Semester, as: 'semester' }
+                ]
+            }],
+            order: [
+                [{ model: Schedule, as: 'schedule' }, { model: SchoolYear, as: 'schoolYear' }, 'year', 'DESC'],
+                [{ model: Schedule, as: 'schedule' }, { model: Semester, as: 'semester' }, 'id', 'ASC'],
+            ]
+        });
+
+        res.json(enrollments);
+    } catch (error) {
+        console.error("Error fetching student enrollments:", error);
         next(error);
     }
 };

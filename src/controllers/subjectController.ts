@@ -73,29 +73,25 @@ export const createSubject = async (req: ExpressRequest, res: Response, next: Ne
     try {
         const {
             code,
-            name,
             description,
             units,
             courseId,
             yearLevel,
             semester,
-            subjectType
         } = req.body;
 
-        if (!code || !name || !units || !courseId || !yearLevel || !semester) {
+        if (!code || !description || !units || !courseId || !yearLevel || !semester) {
             res.status(400).json({ message: 'Missing required fields.' });
             return;
         }
 
         const subject = await Subject.create({
             code,
-            name,
             description,
             units,
             courseId,
             yearLevel,
             semester,
-            subjectType: subjectType || 'Core',
             isActive: true
         });
 
@@ -139,3 +135,28 @@ export const deleteSubject = async (req: ExpressRequest, res: Response, next: Ne
         next(error);
     }
 }; 
+
+export const getSubjectsByFilter = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+        const { courseId, yearLevel, semester } = req.query;
+
+        if (!courseId || !yearLevel || !semester) {
+            res.status(400).json({ message: 'courseId, yearLevel, and semester are required query parameters.' });
+            return;
+        }
+
+        const subjects = await Subject.findAll({
+            where: {
+                courseId: parseInt(courseId as string, 10),
+                yearLevel: parseInt(yearLevel as string, 10),
+                semester: parseInt(semester as string, 10),
+            },
+            order: [['code', 'ASC']],
+        });
+
+        res.json(subjects);
+    } catch (error) {
+        console.error("Error fetching subjects by filter:", error);
+        next(error);
+    }
+};

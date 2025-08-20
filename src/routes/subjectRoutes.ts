@@ -5,7 +5,8 @@ import {
     createSubject, 
     updateSubject, 
     deleteSubject,
-    getSubjectsByCourse
+    getSubjectsByCourse,
+    getSubjectsByFilter
 } from '../controllers/subjectController';
 import { authMiddleware, adminMiddleware } from '../middleware/authMiddleware';
 
@@ -15,10 +16,13 @@ const router = express.Router();
 router.get('/', authMiddleware, getAllSubjects);
 
 // Get subjects by course
-router.get('/course/:course', authMiddleware, getSubjectsByCourse);
+router.get('/course/:course', getSubjectsByCourse);
 
-// Get specific subject
-router.get('/:id', authMiddleware, getSubjectById);
+// ✨ FIX: The specific '/filter' route must come BEFORE the dynamic '/:id' route.
+router.get('/filter', getSubjectsByFilter);
+
+// Get specific subject by ID
+router.get('/:id', getSubjectById);
 
 // Create new subject (admin only)
 router.post('/', authMiddleware, adminMiddleware, createSubject);
@@ -29,4 +33,4 @@ router.put('/:id', authMiddleware, adminMiddleware, updateSubject);
 // Delete subject (admin only)
 router.delete('/:id', authMiddleware, adminMiddleware, deleteSubject);
 
-export default router; 
+export default router;
