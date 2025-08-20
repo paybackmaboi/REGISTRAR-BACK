@@ -3,6 +3,8 @@
 **Documentation Lead**: Raquel Pacure  
 **Last Updated**: August 21, 2025 – 01:27 A.M
 **Last Updated**: August 21, 2025 – 03:12 A.M
+**Last Updated**: August 21, 2025 – 04:14 A.M
+
 
 
 ---
@@ -24,11 +26,11 @@
 | Cost and Benefits                     | ✅ Done              | Prices are still under review and need further discussion   |
 | MOSCOW                                | ✅ Done              |                                                  |
 | Gantt Chart                           | ✅ Done              |                                                  |
-| Critical Path                         | ✅ Done              |                                                  |
+| Critical Path                         | ✅ Done              | Needs to be check by the Project Manager         |
 | Data and Process Modeling             | ✅ Done              |                                                  |
 | Existing Flowchart                    | ✅ Done              |                                                  |
 | Proposed Flowchart                    | ✅ Done              | Not the Updated Version                          |
-| Use Case Diagram                      | ✅ Done              |                                                 |
+| Use Case Diagram                      | ✅ Done              |                                                  |
 | Narrative                             | ✅ Done              |                                                  |
 | Activity Diagram                      | ⛔ Not started yet   | Waiting for system completion                    |
 | State Chart Diagram                   | ⛔ Not started yet   | Waiting for system completion                    |
@@ -67,3 +69,4 @@ It aims to reduce manual workloads, increase data accuracy, and enhance accessib
 - The **Activity Diagram** and **State Chart Diagram** have not yet started, pending system completion.  
 - The **Existing Flowchart** is outdated and requires updating.  
 - The **Use Case Diagram** is complete but pending final review by the Team Leader.  
+- The **Critical Path** needs to be check by the Project Manager.
