@@ -2,13 +2,15 @@
 
 **Documentation Lead**: Raquel Pacure  
 **Last Updated**: August 21, 2025 – 01:27 A.M
+**Last Updated**: August 21, 2025 – 03:12 A.M
+
 
 ---
 
 ## 📄 Project Documentation
 
 🔗 **Download the main documentation file:**  
-[📎 CAPSTONE 2 (RECORDS MANAGEMENT SYSTEM).docx](https://docs.google.com/document/d/1x4wvQYwamo7RR96b6to0-e-FXHF1i5Ba/edit?usp=sharing&ouid=104714777232985337086&rtpof=true&sd=true)  
+[📎 CAPSTONE 2 (RECORDS MANAGEMENT SYSTEM).docx](https://docs.google.com/document/d/17ZBFURFWhi7ilaLFSU6EnHXpOYuCTjin/edit?usp=sharing&ouid=104714777232985337086&rtpof=true&sd=true)  
 
 ---
 
@@ -19,21 +21,21 @@
 | Scope and Limitation                  | ✅ Done              |                                                  |
 | Project Feasibility                   | ✅ Done              |                                                  |
 | Work Breakdown Structure              | ✅ Done              | Awaiting final check by team leader              |
-| Cost and Benefits                     | ✅ Done              | Prices still under review/discussion             |
+| Cost and Benefits                     | ✅ Done              | Prices are still under review and need further discussion   |
 | MOSCOW                                | ✅ Done              |                                                  |
 | Gantt Chart                           | ✅ Done              |                                                  |
 | Critical Path                         | ✅ Done              |                                                  |
-| Data and Process Modeling             | ✅ Done              | Awaiting final check by team leader              |
-| Existing Flowchart                    | ✅ Done              | Not the Updated Version                          |
+| Data and Process Modeling             | ✅ Done              |                                                  |
+| Existing Flowchart                    | ✅ Done              |                                                  |
 | Proposed Flowchart                    | ✅ Done              | Not the Updated Version                          |
-| Use Case Diagram                      | ✅ Done              |                                                  |
+| Use Case Diagram                      | ✅ Done              |                                                 |
 | Narrative                             | ✅ Done              |                                                  |
 | Activity Diagram                      | ⛔ Not started yet   | Waiting for system completion                    |
 | State Chart Diagram                   | ⛔ Not started yet   | Waiting for system completion                    |
 | Design                                | ⚠️ Inputted          | Will be updated as features are completed        |
 | Entity Relationship Diagram (ERD)     | ⛔ Not started yet   | Waiting for database to be completed             |
-| System Architecture                   | ⛔ Not started yet   |                                                  |
-| Security                              | ✅ Done              | Needs to be check                                |
+| System Architecture                   | ⛔ Not started yet   | Waiting for system completion                    |
+| Security                              | ✅ Done              |                                                  |
 | Development                           | ✅ Done              | Revised                                          |
 | Hardware Specification                | ✅ Done              |                                                  |
 
@@ -57,13 +59,11 @@ It aims to reduce manual workloads, increase data accuracy, and enhance accessib
 ---
 
 ## 📝 Notes
-
-- Diagrams and designs will be updated as development progresses.  
-- Some sections are pending completion until the system and database are finalized.  
-- The **Entity Relationship Diagram (ERD)** is not yet started, pending finalization of the database.    
-- The **Design** section will be updated as soon as the system’s final version is completed and new features are added.   
-- **Cost and Benefits** is done, but pricing is still under review/discussion.  
-- **Activity Diagram** and **State Chart Diagram** are not yet started, waiting for system completion.  
-- The **Existing Flowchart** is not yet done
-- **Use Case Diagram** is done but pending final review from the Team Leader. 
-
+- Diagrams and designs will continue to be updated as development progresses.  
+- Some sections remain pending until the system and database are finalized.  
+- The **Entity Relationship Diagram (ERD)** has not yet started and will begin after database finalization.  
+- The **Design** section will be updated once the system’s final version and additional features are completed.  
+- The **Cost and Benefits** section is drafted, but pricing is still under review and requires discussion with the Project Manager and team.  
+- The **Activity Diagram** and **State Chart Diagram** have not yet started, pending system completion.  
+- The **Existing Flowchart** is outdated and requires updating.  
+- The **Use Case Diagram** is complete but pending final review by the Team Leader.  
