@@ -1,7 +1,7 @@
 # 📁 CAPSTONE 2: Records Management System
 
 **Documentation Lead**: Raquel Pacure  
-**Last Updated**: August 20, 2025 – 01:02 A.M
+**Last Updated**: August 21, 2025 – 01:27 A.M
 
 ---
 
@@ -64,6 +64,6 @@ It aims to reduce manual workloads, increase data accuracy, and enhance accessib
 - The **Design** section will be updated as soon as the system’s final version is completed and new features are added.   
 - **Cost and Benefits** is done, but pricing is still under review/discussion.  
 - **Activity Diagram** and **State Chart Diagram** are not yet started, waiting for system completion.  
-- The **Existing Flowchart & Proposed Flowchart** in the Document are not the Updated Version or the New Existing Flowchart & Proposed Flowchart
+- The **Existing Flowchart** is not yet done
 - **Use Case Diagram** is done but pending final review from the Team Leader. 
 
