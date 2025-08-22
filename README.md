@@ -1,10 +1,11 @@
 # 📁 CAPSTONE 2: Records Management System
 
 **Documentation Lead**: Raquel Pacure  
-**Last Updated**: August 21, 2025 – 01:27 A.M
+**Last Updated**: August 21, 2025 – 01:27 A.M 
 **Last Updated**: August 21, 2025 – 03:12 A.M
-**Last Updated**: August 21, 2025 – 04:14 A.
+**Last Updated**: August 21, 2025 – 04:14 A.M
 **Last Updated**: August 21, 2025 – 05:42 A.M
+**Last Updated**: August 22, 2025 - 04:39 P.M
 
 
 
@@ -24,15 +25,15 @@
 |---------------------------------------|---------------------|--------------------------------------------------|
 | Scope and Limitation                  | ✅ Done              |                                                  |
 | Project Feasibility                   | ✅ Done              |                                                  |
-| Work Breakdown Structure              | ✅ Done              | Awaiting final check by team leader              |
-| Cost and Benefits                     | ✅ Done              | Prices are still under review and need further discussion   |
+| Work Breakdown Structure              | ✅ Done              |                                                  |
+| Cost and Benefits                     | ✅ Done              |                                                  |
 | MOSCOW                                | ✅ Done              |                                                  |
 | Gantt Chart                           | ✅ Done              |                                                  |
-| Critical Path                         | ✅ Done              | Needs to be check by the Project Manager         |
+| Critical Path                         | ✅ Done              |                                                  |
 | Data and Process Modeling             | ✅ Done              |                                                  |
 | Existing Flowchart                    | ✅ Done              |                                                  |
 | Proposed Flowchart                    | ✅ Done              | Not the Updated Version                          |
-| Use Case Diagram                      | ✅ Done              | I redesigning the Use Case Diagram               |
+| Use Case Diagram                      | ✅ Done              |                                                  |
 | Narrative                             | ✅ Done              |                                                  |
 | Activity Diagram                      | ⛔ Not started yet   | Waiting for system completion                    |
 | State Chart Diagram                   | ⛔ Not started yet   | Waiting for system completion                    |
@@ -40,7 +41,7 @@
 | Entity Relationship Diagram (ERD)     | ⛔ Not started yet   | Waiting for database to be completed             |
 | System Architecture                   | ⛔ Not started yet   | Waiting for system completion                    |
 | Security                              | ✅ Done              |                                                  |
-| Development                           | ✅ Done              | Revised                                          |
+| Development                           | ✅ Done              |                                                  |
 | Hardware Specification                | ✅ Done              |                                                  |
 
 ---
@@ -66,10 +67,6 @@ It aims to reduce manual workloads, increase data accuracy, and enhance accessib
 - Diagrams and designs will continue to be updated as development progresses.  
 - Some sections remain pending until the system and database are finalized.  
 - The **Entity Relationship Diagram (ERD)** has not yet started and will begin after database finalization.  
-- The **Design** section will be updated once the system’s final version and additional features are completed.  
-- The **Cost and Benefits** section is drafted, but pricing is still under review and requires discussion with the Project Manager and team.  
+- The **Design** section will be updated once the system’s final version and additional features are completed.   
 - The **Activity Diagram** and **State Chart Diagram** have not yet started, pending system completion.  
 - The **Existing Flowchart** is outdated and requires updating.  
-- The **Use Case Diagram** is complete but pending final review by the Team Leader.  
-- The **Critical Path** needs to be check by the Project Manager.
-- Revised **Use Case Diagram** into block-style format. Updated actor functions (Admin/Registrar, Accounting, Student) and aligned design with thesis documentation.
