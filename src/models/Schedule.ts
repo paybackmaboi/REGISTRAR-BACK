@@ -1,7 +1,5 @@
 import { Model, DataTypes, Sequelize, Optional } from 'sequelize';
 
-// ✨ FIX: Updated the interface to explicitly use `| null` for nullable fields
-// and `?` for fields with database defaults.
 interface ScheduleAttributes {
     id: number;
     subjectId: number;
@@ -12,8 +10,8 @@ interface ScheduleAttributes {
     endTime: string | null;
     room: string | null;
     maxStudents: number | null;
-    currentEnrolled?: number; // Optional because it has a default value
-    isActive?: boolean;      // Optional because it has a default value
+    currentEnrolled?: number; 
+    isActive?: boolean;
 }
 
 // When creating a new schedule, `id` is optional.

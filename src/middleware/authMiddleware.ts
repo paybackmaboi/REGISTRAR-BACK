@@ -38,5 +38,21 @@ export const adminMiddleware = (req: Request, res: Response, next: NextFunction)
     next();
 };
 
+export const adminOrAccountingMiddleware = (req: Request, res: Response, next: NextFunction): void => {
+    if (req.user && (req.user.role === 'admin' || req.user.role === 'accounting')) {
+        next();
+    } else {
+        res.status(403).json({ message: 'Forbidden: Access is restricted to Administrators or Accounting' });
+    }
+};
+
+export const accountingMiddleware = (req: Request, res: Response, next: NextFunction): void => {
+    if (req.user?.role !== 'accounting') {
+        res.status(403).json({ message: 'Forbidden: Access is restricted to accounting personnel' });
+        return;
+    }
+    next();
+};
+
 // This empty export ensures the file is treated as a module.
 export {};

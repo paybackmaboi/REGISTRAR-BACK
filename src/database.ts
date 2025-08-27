@@ -15,6 +15,12 @@ import { Enrollment as EnrollmentModel, initEnrollment } from './models/Enrollme
 import { Grade as GradeModel, initGrade } from './models/Grade';
 import { Request as RequestModel, initRequest } from './models/Request';
 import { Notification as NotificationModel, initNotification } from './models/Notification';
+// --- START: ADD THIS ---
+import { Accounting as AccountingModel, initAccounting, associateAccounting } from './models/Accounting';
+// --- END: ADD THIS ---
+import { requestFromRegistrar as RegistrarRequestModel, initRequestFromRegistrar, associateRequest, } from './models/requestFromRegistrar';
+import { SubmittedRequirement as SubmittedRequirementModel, initSubmittedRequirement, associateSubmittedRequirement } from './models/SubmittedRequirement';
+
 
 dotenv.config();
 
@@ -58,7 +64,13 @@ export const connectAndInitialize = async () => {
         initEnrollment(sequelize);
         initGrade(sequelize);
         initRequest(sequelize);
+        initRequestFromRegistrar(sequelize);
         initNotification(sequelize);
+        // --- START: ADD THIS ---
+        initAccounting(sequelize);
+        // --- END: ADD THIS ---
+         initSubmittedRequirement(sequelize);
+        associateSubmittedRequirement();
 
         // --- Define all associations ---
 
@@ -106,6 +118,9 @@ export const connectAndInitialize = async () => {
         UserModel.hasMany(RequestModel, { foreignKey: 'studentId', as: 'requests' });
         RequestModel.belongsTo(UserModel, { foreignKey: 'studentId', as: 'student' });
 
+        UserModel.hasMany(RegistrarRequestModel, { foreignKey: 'studentId', as: 'requestFromRegistrar' });
+        RegistrarRequestModel.belongsTo(UserModel, { foreignKey: 'studentId', as: 'student' });
+
         // User -> Notification (One-to-Many)
         UserModel.hasMany(NotificationModel, { foreignKey: 'userId', as: 'notifications' });
         NotificationModel.belongsTo(UserModel, { foreignKey: 'userId', as: 'user' });
@@ -117,6 +132,12 @@ export const connectAndInitialize = async () => {
 		// Semester -> Student (One-to-Many for registration)
 		SemesterModel.hasMany(StudentModel, { foreignKey: 'registrationSemesterId', as: 'registeredStudents' });
 		StudentModel.belongsTo(SemesterModel, { foreignKey: 'registrationSemesterId', as: 'registrationSemester' });
+        
+        // --- START: ADD THIS ---
+        // User -> Accounting (One-to-One)
+        associateAccounting();
+        // --- END: ADD THIS ---
+        
         // Authenticate the connection.
         await sequelize.authenticate();
         console.log('Sequelize has connected to the database successfully.');
@@ -148,3 +169,6 @@ export const Enrollment = EnrollmentModel;
 export const Grade = GradeModel;
 export const Request = RequestModel;
 export const Notification = NotificationModel;
+export const Accounting = AccountingModel;
+export const requestFromRegistrar = RegistrarRequestModel;
+export const SubmittedRequirement = SubmittedRequirementModel;

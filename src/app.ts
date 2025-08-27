@@ -19,6 +19,7 @@ import scheduleRoutes from './routes/scheduleRoutes';
 import courseRoutes from './routes/courseRoutes';
 import schoolYearRoutes from './routes/schoolYearRoutes'; 
 import semesterRoutes from './routes/semesterRoutes';
+import accountingRoutes from './routes/accountingRoutes';
 
 
 dotenv.config();
@@ -49,6 +50,7 @@ app.use('/api/subjects', subjectRoutes);
 app.use('/api/semesters', semesterRoutes);
 app.use('/api/schedules', scheduleRoutes);
 app.use('/api/courses', courseRoutes);
+app.use('/api/accounting', accountingRoutes);
 
 // --- Error Handling Middleware ---
 const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
